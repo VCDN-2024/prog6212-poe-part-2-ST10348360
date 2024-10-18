@@ -1,0 +1,148 @@
+﻿@{
+    ViewData["Title"] = "Accept Reject Programme Coordinator";
+    ViewData["ShowNavbar"] = true;
+    ViewData["Role"] = "ProgrammeCoordinator";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claims</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e7c9ed;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #5e165e;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        /* Table styling */
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #d3aed8;
+            color: #333;
+            font-size: 18px;
+        }
+
+        /* Button styling */
+        td button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .approve {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+            .approve:hover {
+                background-color: #45a049;
+            }
+
+        .decline {
+            background-color: #f44336;
+            color: white;
+        }
+
+            .decline:hover {
+                background-color: #e53935;
+            }
+
+        /* All claims button */
+        .all-claims-btn {
+            margin-top: 30px;
+        }
+
+            .all-claims-btn button {
+                padding: 10px 20px;
+                background-color: #333;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+                .all-claims-btn button:hover {
+                    background-color: #555;
+                }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Claims</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>My Claims</th>
+                    <th>Lecturer</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var claim in Model)
+                {
+                    <tr>
+                        <td>@claim.Description</td>
+                        <td>@claim.LecturerName</td>
+                        <td>@claim.Status</td>
+                        <td>
+                            @if (claim.Status == "Pending")
+                            {
+                                <form method="post" action="/ProgrammeCoordinator/Accept" style="display:inline-block;">
+                                    <input type="hidden" name="ClaimId" value="@claim.Id" />
+                                    <button type="submit" class="approve me-2">Accept</button>
+                                </form>
+                                <form method="post" action="/ProgrammeCoordinator/Reject" style="display:inline-block;">
+                                    <input type="hidden" name="ClaimId" value="@claim.Id" />
+                                    <button type="submit" class="decline">Reject</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <span>@claim.Status</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

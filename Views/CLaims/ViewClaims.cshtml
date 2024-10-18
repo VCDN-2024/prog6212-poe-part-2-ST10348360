@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "View Claims";
+    ViewData["ShowNavbar"] = true;
+    ViewData["Role"] = "Lecturer";
+}
+
+@model IEnumerable<CMS.Models.ClaimView>
+
+    <style>
+        /* General body styles */
+body {
+    background-color: #d09cdc; /* Light purple background color */
+    font-family: Arial, sans-serif;
+}
+
+/* Heading styles */
+h2 {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #ffffff; /* White background for header */
+    border-bottom: 3px solid #b88fb8; /* Darker purple border */
+    color: #000; /* Black text color */
+}
+
+/* Table styles */
+.table {
+    width: 80%; /* Make table responsive */
+    max-width: 800px; /* Limit maximum width */
+    margin: 20px auto; /* Center table */
+    border-collapse: collapse; /* Merge borders */
+    background-color: #f1d5f1; /* Light purple background for table */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensure rounded corners are visible */
+}
+
+/* Table header styles */
+.table thead {
+    background-color: #b88fb8; /* Darker purple for header */
+    color: white; /* White text for header */
+}
+
+.table th, .table td {
+    padding: 12px; /* Padding inside cells */
+    text-align: left; /* Align text to the left */
+    border-bottom: 1px solid #dddddd; /* Light gray border for rows */
+}
+
+/* Table row styles */
+.table tbody tr:hover {
+    background-color: #f1b5f1; /* Light purple background on hover */
+}
+
+
+
+    </style>
+
+
+<h2>My Claims</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Claim Date</th>
+            <th>Hours Worked</th>
+            <th>Hourly Rate</th>
+            <th>Total Hours Worked</th>
+            <th>Description of Work</th>
+            <th>Additional Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.ClaimDate.ToShortDateString()</td>
+                <td>@claim.HoursWorked</td>
+                <td>@claim.HourlyRate</td>
+                <td>@claim.TotalHoursWorked</td>
+                <td>@claim.DescriptionOfWork</td>
+                <td>@claim.AdditionalNotes</td>
+            </tr>
+        }
+    </tbody>
+</table>

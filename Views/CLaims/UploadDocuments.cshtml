@@ -1,0 +1,119 @@
+﻿
+@model CMS.Models.DocumentView
+@{
+    ViewData["Title"] = "Upload Document";
+    ViewData["ShowNavbar"] = true;
+    ViewData["Role"] = "Lecturer";
+}
+
+<style>
+    /* General styling */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f3e6f5;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2, h3 {
+        text-align: center;
+        color: #5e165e;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px auto;
+        padding: 20px;
+        border: 2px solid #b967c7;
+        border-radius: 10px;
+        background-color: #fff;
+        width: 50%;
+    }
+
+    label {
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    input[type="file"] {
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+    /* Uploaded documents section */
+    h3 {
+        margin-top: 40px;
+    }
+
+
+
+    .uploaded-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+        .uploaded-item button {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+            .uploaded-item button:hover {
+                background-color: #e53935;
+            }
+
+    /* Upload document section */
+    #upload-section {
+        margin: 40px auto;
+        width: 50%;
+    }
+
+    input[type="file"] {
+        width: 100%;
+    }
+
+</style>
+
+
+<h2>Upload Document</h2>
+
+<form asp-action="UploadDocument" method="post" enctype="multipart/form-data">
+    <div>
+        <label>Select file to upload:</label>
+        <input type="file" asp-for="DocumentFile" required />
+    </div>
+    <button type="submit">Upload</button>
+</form>
+
+@if (Model.UploadedFiles != null && Model.UploadedFiles.Any())
+{
+    <h3>Uploaded Documents:</h3>
+    <ul>
+        @foreach (var file in Model.UploadedFiles)
+        {
+            <li>@file</li>
+        }
+    </ul>
+}

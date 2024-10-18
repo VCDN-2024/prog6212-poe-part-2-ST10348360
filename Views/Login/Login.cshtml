@@ -1,0 +1,143 @@
+﻿@model CMS.Models.LoginView
+@{
+    ViewData["Title"] = "Login";
+    ViewData["ShowNavbar"] = false;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Contract Management Claims System</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e7c9ed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-column, .right-column {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .left-column h2 {
+            color: #5e165e;
+            margin-bottom: 10px;
+        }
+
+        .left-column h3 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .left-column label {
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+        }
+
+        .left-column input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .forgot-password {
+            margin-bottom: 15px;
+        }
+
+        .forgot-password button {
+            background: none;
+            border: none;
+            color: #5e165e;
+            cursor: pointer;
+        }
+
+        .login-button {
+            padding: 10px 20px;
+            background-color: #5e165e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background-color: #4a0f4a;
+        }
+
+        .right-column {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #31aef1;
+            border-radius: 8px 0 0 8px;
+            color: #fff;
+        }
+
+        .right-section h1 {
+            margin: 0;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body id="main">
+    <div class="container">
+        <div class="left-column">
+            <form asp-action="Login" method="post">
+                <h2>Login</h2>
+                <h3>Welcome to<br>Contract Management Claims System</h3>
+
+                <div>
+                    <label>Username:</label>
+                    <input asp-for="Username" type="text" required />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input asp-for="Password" type="password" required />
+                    
+                </div>
+                <div class="forgot-password">
+                    <button type="button" onclick="alert('Forgot Password feature coming soon!');">Forgot Password?</button>
+                </div> 
+
+                <button class="login-button" type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="right-column">
+            <div class="right-section">
+                <h1>CMCS</h1>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

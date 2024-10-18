@@ -1,0 +1,139 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Submit Claim";
+    ViewData["ShowNavbar"] = true;
+    ViewData["Role"] = "Lecturer";
+}
+
+@model CMS.Models.ClaimView
+<style>
+    /* General form styles */
+    body {
+        background-color: #d09cdc; /* Light purple background color */
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        padding: 10px 0;
+        background-color: #ffffff;
+        border-bottom: 3px solid #b88fb8;
+        color: #000;
+    }
+
+    form {
+        background-color: #f1d5f1; /* Slightly lighter purple */
+        width: 50%;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid #b88fb8; /* Darker purple border */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Container for form inputs */
+    .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 15px;
+        margin-bottom: 20px;
+    }
+
+        /* Label and input alignment */
+        .container div {
+            display: flex;
+            flex-direction: column;
+        }
+
+    label {
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input, textarea {
+        padding: 10px;
+        border: 1px solid #999;
+        border-radius: 5px;
+        background-color: #eeeeee;
+        font-size: 1rem;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    /* Full-width for large inputs */
+    .notes, .desc {
+        grid-column: span 2;
+    }
+
+    /* Align buttons to the right */
+    .button-container {
+        display: flex;
+        justify-content: flex-end; /* Align buttons to the right */
+        gap: 15px; /* Add space between buttons */
+        margin-top: 20px;
+    }
+
+    /* Button styles */
+    button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        width: 150px; /* Ensure buttons have a fixed width */
+        border: none;
+    }
+
+    .submit-button {
+        background-color: #4CAF50; /* Green button */
+        color: white;
+    }
+
+        .submit-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+    .cancel-button {
+        background-color: #f44336; /* Red button for cancel */
+        color: white;
+    }
+
+        .cancel-button:hover {
+            background-color: #e73e33; /* Darker red on hover */
+        }
+</style>
+
+
+
+<h2>Submit Claim</h2>
+<form asp-action="SubmitClaim" method="post">
+    <div>
+        <label>Claim Date:</label>
+        <input asp-for="ClaimDate" type="date" required />
+    </div>
+    <div>
+        <label>Hours Worked:</label>
+        <input asp-for="HoursWorked" type="number" required />
+    </div>
+    <div>
+        <label>Hourly Rate:</label>
+        <input asp-for="HourlyRate" type="number" required />
+    </div>
+    <div>
+        <label>Total Hours Worked:</label>
+        <input asp-for="TotalHoursWorked" type="number" required />
+    </div>
+    <div>
+        <label>Description of Work:</label>
+        <textarea asp-for="DescriptionOfWork" required></textarea>
+    </div>
+    <div>
+        <label>Additional Notes:</label>
+        <textarea asp-for="AdditionalNotes"></textarea>
+    </div>
+    <button type="submit">Submit Claim</button>
+</form>
